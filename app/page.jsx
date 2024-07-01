@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import SignInPage from "./sign-in/page";
 import SignOutButton from "./components/SignOutButton";
+import Link from "next/link";
 
 export default async function Home() {
   const session = await auth();
@@ -14,7 +15,7 @@ export default async function Home() {
         <SignOutButton />
       </div>
       <div className="z-10 max-w-5xl w-full flex flex-col items-center mt-4">
-        <SignInPage />
+        {session?.user ? <SignInPage /> : <Link href="/sign-in">Sign in</Link>}
       </div>
     </div>
   );
